@@ -277,7 +277,6 @@ Foam::twoPhaseSystem::~twoPhaseSystem()
 
 
 // * * * * * * * * * * * * * * Member Functions  * * * * * * * * * * * * * * //
-// here are acessess							    //	
 
 Foam::tmp<Foam::volScalarField> Foam::twoPhaseSystem::rho() const
 {
@@ -336,12 +335,12 @@ Foam::twoPhaseSystem::turbulentDispersionForce() const
     return turbulentDispersion_->F<vector>();
 }
 
-//***********************MUSLE solve the alpha*******************//
+
 void Foam::twoPhaseSystem::solve()
 {
     const Time& runTime = mesh_.time();
 
-    volScalarField& alpha1 = phase1_;	
+    volScalarField& alpha1 = phase1_;
     volScalarField& alpha2 = phase2_;
 
     const surfaceScalarField& phi1 = phase1_.phi();
@@ -511,14 +510,14 @@ void Foam::twoPhaseSystem::solve()
         {
             MULES::explicitSolve
             (
-                geometricOneField(),		//rho of solid, MULES assume it is constant
-                alpha1,				//psi
-                phi_,				//surfaceScalarField phi
-                alphaPhic1,			//phiPsi
+                geometricOneField(),
+                alpha1,
+                phi_,
+                alphaPhic1,
                 Sp,
                 Su,
-                phase1_.alphaMax(),		//psiMax
-                0				//psiMin
+                phase1_.alphaMax(),
+                0
             );
 
             phase1_.alphaPhi() = alphaPhic1;

@@ -102,7 +102,7 @@ int main(int argc, char *argv[])
 
             if (pimple.turbCorr())
             {
-                fluid.correctTurbulence();	//Here updates the viscosity and other files
+                fluid.correctTurbulence();
             }
         }
 

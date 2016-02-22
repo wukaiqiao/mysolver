@@ -58,7 +58,7 @@ Foam::kineticTheoryModels::frictionalStressModels::Schaeffer::Schaeffer
     coeffDict_(dict.subDict(typeName + "Coeffs")),
     phi_("phi", dimless, coeffDict_.lookup("phi"))
 {
-    phi_ *= constant::mathematical::pi/180.0;		//transfer pi into phi
+    phi_ *= constant::mathematical::pi/180.0;
 }
 
 
@@ -80,7 +80,7 @@ frictionalPressure
 ) const
 {
     return
-        dimensionedScalar("1e24", dimensionSet(1, -1, -2, 0, 0), 1e24)	//1e24*(alpha-alphaMinFriction)^10 if alpha1<Minfriction, then it is 0
+        dimensionedScalar("1e24", dimensionSet(1, -1, -2, 0, 0), 1e24)
        *pow(Foam::max(alpha1 - alphaMinFriction, scalar(0)), 10.0);
 }
 
@@ -95,7 +95,7 @@ frictionalPressurePrime
 ) const
 {
     return
-        dimensionedScalar("1e25", dimensionSet(1, -1, -2, 0, 0), 1e25)	//1e25*(alpha-alphaMinFriction)^9 if alpha1<Minfriction, then it is 0
+        dimensionedScalar("1e25", dimensionSet(1, -1, -2, 0, 0), 1e25)
        *pow(Foam::max(alpha1 - alphaMinFriction, scalar(0)), 9.0);
 }
 
@@ -135,7 +135,7 @@ Foam::kineticTheoryModels::frictionalStressModels::Schaeffer::nu
 
     forAll (D, celli)
     {
-        if (alpha1[celli] > alphaMax.value() - 5e-2)	//this counts if alphaMax is 0.65 than it is 0.65-0.05!!!!!!!!!
+        if (alpha1[celli] > alphaMax.value() - 5e-2)	//this counts if alphaMax is 0.65 than it is 0.65-0.05
         {
             nuf[celli] =
                 0.5*pf[celli]*sin(phi_.value())
