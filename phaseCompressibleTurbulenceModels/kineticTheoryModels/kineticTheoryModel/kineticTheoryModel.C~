@@ -378,7 +378,7 @@ Foam::RASModels::kineticTheoryModel::divDevRhoReff
 }
 
 
-void Foam::RASModels::kineticTheoryModel::correct()
+void Foam::RASModels::kineticTheoryModel::correct()	//here goes the calculation of kinetic theroy!!!
 {
     // Local references
     volScalarField alpha(max(this->alpha_, scalar(0)));
@@ -480,7 +480,7 @@ void Foam::RASModels::kineticTheoryModel::correct()
     }
     else
     {
-        // Equilibrium => dissipation == production
+        // Equilibrium => dissipation == production		//here solve the algeraition equation of KTGF, by assuming dissipation == production.
         // Eq. 4.14, p.82
         volScalarField K1(2.0*(1.0 + e_)*rho*gs0_);
         volScalarField K3
